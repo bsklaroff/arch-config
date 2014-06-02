@@ -1,0 +1,10 @@
+# Set cursor to arrow instead of cross
+xsetroot -cursor_name left_ptr
+# Fix top row keys
+xbindkeys
+# Change terminal colors
+xrdb ~/.Xresources
+# Map search key to escape
+xmodmap ~/.Xmodmap
+# Start xmonad
+exec xmonad

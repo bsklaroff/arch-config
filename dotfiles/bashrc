@@ -1,0 +1,20 @@
+#
+# ~/.bashrc
+#
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+PS1='[\u@\h \W]\$ '
+
+# Aliases
+alias ls='ls --color=auto'
+alias vi='vim'
+alias sour="source $HOME/.bashrc"
+alias pacsave="pacman -Qetn | cut -d' ' -f1 > $HOME/.arch_config/paclist.txt"
+function pac {
+  sudo pacman -S $@
+  pacsave
+}
+
+[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx

@@ -1,0 +1,77 @@
+set nocompatible
+set history=1000
+
+" Load plugins with Vundle
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Bundle 'gmarik/Vundle.vim'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'scrooloose/nerdtree'
+
+call vundle#end()
+
+filetype plugin indent on
+
+" Set tabs to two spaces
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set expandtab
+set shiftround
+
+" Enable syntax highlighting
+syntax on
+
+" Change colorscheme
+set background=dark
+colorscheme solarized
+
+" Show line numbers
+set nu
+
+" Show filename at bottom of window
+set ls=2
+
+" Make tab-completion better
+set wildmode=longest,list,full
+set wildmenu
+
+" Autoupdate files from the outside
+set autoread
+
+" pwd should be this file, not some other madness
+set autochdir
+
+" Disable backup
+set nobackup
+set nowb
+set noswapfile
+
+" Delete trailing whitespace on save
+func! DeleteTrailingWS()
+  exe "normal mz"
+  %s/\s\+$//ge
+  exe "normal `z"
+endfunc
+au BufWrite * :call DeleteTrailingWS()
+
+" Set leader and localleader
+:let mapleader = ","
+:let maplocalleader = "\\"
+
+" Useful mappings
+" Edit my vimrc
+:nnoremap <leader>ev :vsp $MYVIMRC<cr>
+:nnoremap <leader>sv :source $MYVIMRC<cr>
+" Toggle NERDTree
+:nnoremap <leader>nt :NERDTreeToggle<cr>
+" Copy-paste with clipboard
+:vnoremap <leader>cc :w !xsel -ib<cr>
+:nnoremap <leader>vv :r !xsel -b<cr>
+
+" Highlight current line and column as well as the 80th column
+set cursorline
+set colorcolumn=80
+highlight ColorColumn ctermbg=0
