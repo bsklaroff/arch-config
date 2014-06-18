@@ -1,6 +1,8 @@
 fix suspend
 fix youtube fullscreen
-get status bar
+improve status bar
+write small script to add wifi hotspots
+add file backups
 improve fonts
-get system monitoring
+get system monitoring (conky)
 save firefox config and addons

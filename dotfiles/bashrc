@@ -11,6 +11,7 @@ PS1='[\u@\h \W]\$ '
 alias ls='ls --color=auto'
 alias vi='vim'
 alias sour="source $HOME/.bashrc"
+alias wifi="sudo iw dev wlp1s0 scan | grep SSID"
 alias pacsave="pacman -Qetn | cut -d' ' -f1 > $HOME/.arch_config/paclist.txt"
 function pac {
   sudo pacman -S $@

@@ -1,7 +1,10 @@
 #!/bin/bash
 
-# Install packages
-sudo pacman -Syu --needed $(< paclist.txt)
+# Install packages if specified
+if [[ "$1" == "-p" ]]
+then
+  sudo pacman -Syu --needed $(< paclist.txt)
+fi
 
 echo 'Linking dotfiles...'
 # Soft link dotfiles into home directory

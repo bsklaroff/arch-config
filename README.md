@@ -15,6 +15,6 @@ locations, and starts some systemd services
 - `paclist.txt` is a list of packages installed with pacman on my system,
 generated with the command `pacman -Qetn | cut -d' ' -f1`
 - `dotfiles` contains the hidden config files and folders in my home directory,
-such as .bashrc, .xinitrc, .xmonad, etc
+such as `.bashrc`, `.xinitrc`, `.xmonad`, etc
 - `etc` contains the system config files found in `/etc` and its
 subdirectories, such as sound and touchpad settings

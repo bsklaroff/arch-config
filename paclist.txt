@@ -3,10 +3,12 @@ arch-wiki-docs
 autoconf
 automake
 bison
+conky
 cryptsetup
 dhclient
 dhcpcd
 dmenu
+dzen2
 fakeroot
 file
 firefox
@@ -36,12 +38,14 @@ pacman
 patch
 pcmciautils
 pkg-config
+polkit
 procps-ng
 reiserfsprogs
 s-nail
 sudo
 syslinux
 systemd-sysvcompat
+unzip
 usbutils
 vi
 vim
