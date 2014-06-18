@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Install packages if specified
+# Install and update packages if specified
 if [[ "$1" == "-p" ]]
 then
   sudo pacman -Syu --needed $(< paclist.txt)
