@@ -1,0 +1,218 @@
+
+"asyncio" -- Asynchronous I/O, event loop, coroutines and tasks
+***************************************************************
+
+New in version 3.4.
+
+**Source code:** Lib/asyncio/
+
+======================================================================
+
+This module provides infrastructure for writing single-threaded
+concurrent code using coroutines, multiplexing I/O access over sockets
+and other resources, running network clients and servers, and other
+related primitives. Here is a more detailed list of the package
+contents:
+
+* a pluggable *event loop* with various system-specific
+  implementations;
+
+* *transport* and *protocol* abstractions (similar to those in
+  Twisted);
+
+* concrete support for TCP, UDP, SSL, subprocess pipes, delayed
+  calls, and others (some may be system-dependent);
+
+* a "Future" class that mimics the one in the "concurrent.futures"
+  module, but adapted for use with the event loop;
+
+* coroutines and tasks based on "yield from" (**PEP 380**), to help
+  write concurrent code in a sequential fashion;
+
+* cancellation support for "Future"s and coroutines;
+
+* *synchronization primitives* for use between coroutines in a
+  single thread, mimicking those in the "threading" module;
+
+* an interface for passing work off to a threadpool, for times when
+  you absolutely, positively have to use a library that makes blocking
+  I/O calls.
+
+Table of content:
+
+* Event loops
+
+  * Event loop policies and the default policy
+
+  * Event loop functions
+
+  * Event loop policy interface
+
+  * Access to the global loop policy
+
+  * Run an event loop
+
+  * Calls
+
+  * Delayed calls
+
+  * Creating connections
+
+  * Creating listening connections
+
+  * Watch file descriptors
+
+  * Low-level socket operations
+
+  * Resolve host name
+
+  * Connect pipes
+
+  * UNIX signals
+
+  * Executor
+
+  * Error Handling API
+
+  * Debug mode
+
+  * Server
+
+  * Handle
+
+  * Example: Hello World (callback)
+
+  * Example: Set signal handlers for SIGINT and SIGTERM
+
+* Tasks and coroutines
+
+  * Coroutines
+
+    * Example: "Hello World" coroutine
+
+    * Example: Chain coroutines
+
+  * InvalidStateError
+
+  * TimeoutError
+
+  * Future
+
+    * Example: Future with run_until_complete()
+
+    * Example: Future with run_forever()
+
+  * Task
+
+    * Example: Parallel execution of tasks
+
+  * Task functions
+
+* Transports  and protocols (low-level API)
+
+  * Transports
+
+    * BaseTransport
+
+    * ReadTransport
+
+    * WriteTransport
+
+    * DatagramTransport
+
+    * BaseSubprocessTransport
+
+  * Protocols
+
+    * Protocol classes
+
+    * Connection callbacks
+
+    * Streaming protocols
+
+    * Datagram protocols
+
+    * Flow control callbacks
+
+    * Coroutines and protocols
+
+  * Protocol example: TCP echo server and client
+
+    * Echo client
+
+    * Echo server
+
+* Streams (high-level API)
+
+  * Stream functions
+
+  * StreamReader
+
+  * StreamWriter
+
+  * StreamReaderProtocol
+
+  * IncompleteReadError
+
+  * Example
+
+* Subprocess
+
+  * Operating system support
+
+  * Create a subprocess: high-level API using Process
+
+  * Create a subprocess: low-level API using subprocess.Popen
+
+  * Constants
+
+  * Process
+
+  * Example
+
+* Synchronization primitives
+
+  * Locks
+
+    * Lock
+
+    * Event
+
+    * Condition
+
+  * Semaphores
+
+    * Semaphore
+
+    * BoundedSemaphore
+
+  * Queues
+
+    * Queue
+
+    * PriorityQueue
+
+    * LifoQueue
+
+    * JoinableQueue
+
+    * Exceptions
+
+* Develop with asyncio
+
+  * Debug mode of asyncio
+
+  * Concurrency and multithreading
+
+  * Handle blocking functions correctly
+
+  * Logging
+
+  * Detect coroutine objects never scheduled
+
+  * Detect exceptions not consumed
+
+  * Chain coroutines correctly
+
+See also: The "asyncio" module was designed in the **PEP 3156**. For
+  a motivational primer on transports and protocols, see **PEP 3153**.

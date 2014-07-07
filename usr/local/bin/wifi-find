@@ -1,0 +1,98 @@
+#!/usr/bin/python
+
+import subprocess as sp
+import sys
+import locale
+
+# For converting bytestrings to strings
+encoding = locale.getdefaultlocale()[1]
+
+print('Scanning for wireless networks...')
+proc = sp.Popen(['sudo iw dev wlp1s0 scan'], stdout=sp.PIPE, stderr=sp.PIPE, shell=True)
+try:
+  outs, errs = proc.communicate(timeout=15)
+except sp.TimeoutExpired:
+  print('Error: Wifi scan timed out')
+  exit(1)
+
+if errs.decode(encoding) != '':
+  print(errs.decode(encoding))
+  exit(1)
+
+ap_strs = outs.decode(encoding).split('\nBSS')
+aps = []
+
+for ap in ap_strs:
+  ssid_idx = ap.find('SSID: ')
+  ssid = ap[ssid_idx + len('SSID: '):ap.find('\n', ssid_idx)]
+  if len(ssid) == 0:
+    continue
+  cap_idx = ap.find('capability: ')
+  cap = ap[cap_idx + len('capability: '):ap.find('\n', cap_idx)]
+  if cap.find('ESS') == -1:
+    continue
+  security = 'open'
+  if cap.find('Privacy') != -1:
+    if ap.find('\n\tWPA') != -1 or ap.find('\n\tRSN') != -1:
+      security = 'wpa'
+    else:
+      security = 'wep'
+  signal_idx = ap.find('signal: ')
+  signal_str = ap[signal_idx + len('signal: '):ap.find('\n', signal_idx)]
+  signal = float(signal_str.split()[0])
+  aps.append([ssid, security, signal])
+
+aps = sorted(aps, key=lambda ap: ap[2], reverse=True)
+
+print('Available networks:')
+for i, ap in enumerate(aps):
+  print(str(i) + '. ' + ap[0] + ' (' + ap[1] + ', strength: ' +
+          str(ap[2]) + ')')
+
+done = False
+while not done:
+  num = input('Enter a number: ')
+  done = True
+  try:
+    num = int(num)
+  except:
+    done = False
+  if done and (num < 0 or num >= len(aps)):
+    done = False
+  if not done:
+    print('Please enter a number between 0 and ' + str(len(aps) - 1))
+
+network = aps[num]
+f = open('/etc/netctl/' + network[0], 'w')
+if network[1] == 'open':
+  f.write("Description='A simple open wireless connection'\n" +
+          "Interface=wlp1s0\n" +
+          "Connection=wireless\n" +
+          "Security=none\n" +
+          "ESSID='" + network[0] + "'\n" +
+          "IP=dhcp\n")
+elif network[1] == 'wep':
+  password = input('Enter WEP password for ' + network[0] + ': ')
+  f.write("Description='A simple WEP encrypted wireless connection'\n" +
+          "Interface=wlp1s0\n" +
+          "Connection=wireless\n" +
+          "Security=wep\n" +
+          "ESSID='" + network[0] + "'\n" +
+          "Key='" + password + "'\n" +
+          "IP=dhcp\n")
+elif network[1] == 'wpa':
+  password = input('Enter WPA password for ' + network[0] + ': ')
+  f.write("Description='A simple WPA encrypted wireless connection'\n" +
+          "Interface=wlp1s0\n" +
+          "Connection=wireless\n" +
+          "Security=wpa\n" +
+          "IP=dhcp\n" +
+          "ESSID='" + network[0] + "'\n" +
+          "Key='" + password + "'\n" +
+          "ForceConnect=yes\n" +
+          "DHCPClient='dhclient'\n")
+f.close()
+print(network[0] + ' added to /etc/netctl directory')
+print('Restarting netctl-auto...')
+sp.call(['sudo systemctl restart netctl-auto@wlp1s0'], shell=True)
+print('Done!')

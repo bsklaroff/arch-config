@@ -1,0 +1,281 @@
+
+Streams (high-level API)
+************************
+
+
+Stream functions
+================
+
+asyncio.open_connection(host=None, port=None, *, loop=None, limit=None, **kwds)
+
+   A wrapper for "create_connection()" returning a (reader, writer)
+   pair.
+
+   The reader returned is a "StreamReader" instance; the writer is a
+   "StreamWriter" instance.
+
+   The arguments are all the usual arguments to
+   "BaseEventLoop.create_connection()" except *protocol_factory*; most
+   common are positional host and port, with various optional keyword
+   arguments following.
+
+   Additional optional keyword arguments are *loop* (to set the event
+   loop instance to use) and *limit* (to set the buffer limit passed
+   to the "StreamReader").
+
+   (If you want to customize the "StreamReader" and/or
+   "StreamReaderProtocol" classes, just copy the code -- there's
+   really nothing special here except some convenience.)
+
+   This function is a *coroutine*.
+
+asyncio.start_server(client_connected_cb, host=None, port=None, *, loop=None, limit=None, **kwds)
+
+   Start a socket server, with a callback for each client connected.
+
+   The first parameter, *client_connected_cb*, takes two parameters:
+   *client_reader*, *client_writer*.  *client_reader* is a
+   "StreamReader" object, while *client_writer* is a "StreamWriter"
+   object.  This parameter can either be a plain callback function or
+   a *coroutine function*; if it is a coroutine function, it will be
+   automatically converted into a "Task".
+
+   The rest of the arguments are all the usual arguments to
+   "create_server()" except *protocol_factory*; most common are
+   positional host and port, with various optional keyword arguments
+   following.  The return value is the same as "create_server()".
+
+   Additional optional keyword arguments are *loop* (to set the event
+   loop instance to use) and *limit* (to set the buffer limit passed
+   to the "StreamReader").
+
+   The return value is the same as "create_server()", i.e. a
+   "AbstractServer" object which can be used to stop the service.
+
+   This function is a *coroutine*.
+
+asyncio.open_unix_connection(path=None, *, loop=None, limit=None, **kwds)
+
+   A wrapper for "create_unix_connection()" returning a (reader,
+   writer) pair.
+
+   See "open_connection()" for information about return value and
+   other details.
+
+   This function is a *coroutine*.
+
+   Availability: UNIX.
+
+asyncio.start_unix_server(client_connected_cb, path=None, *, loop=None, limit=None, **kwds)
+
+   Start a UNIX Domain Socket server, with a callback for each client
+   connected.
+
+   See "start_server()" for information about return value and other
+   details.
+
+   This function is a *coroutine*.
+
+   Availability: UNIX.
+
+
+StreamReader
+============
+
+class class asyncio.StreamReader(limit=None, loop=None)
+
+   exception()
+
+      Get the exception.
+
+   feed_eof()
+
+      Acknowledge the EOF.
+
+   feed_data(data)
+
+      Feed *data* bytes in the internal buffer.  Any operations
+      waiting for the data will be resumed.
+
+   set_exception(exc)
+
+      Set the exception.
+
+   set_transport(transport)
+
+      Set the transport.
+
+   read(n=-1)
+
+      Read up to *n* bytes.  If *n* is not provided, or set to "-1",
+      read until EOF and return all read bytes.
+
+      If the EOF was received and the internal buffer is empty, return
+      an empty "bytes" object.
+
+      This method is a *coroutine*.
+
+   readline()
+
+      Read one line, where "line" is a sequence of bytes ending with
+      "\n".
+
+      If EOF is received, and "\n" was not found, the method will
+      return the partial read bytes.
+
+      If the EOF was received and the internal buffer is empty, return
+      an empty "bytes" object.
+
+      This method is a *coroutine*.
+
+   readexactly(n)
+
+      Read exactly *n* bytes. Raise an "IncompleteReadError" if the
+      end of the stream is reached before *n* can be read, the
+      "IncompleteReadError.partial" attribute of the exception
+      contains the partial read bytes.
+
+      This method is a *coroutine*.
+
+   at_eof()
+
+      Return "True" if the buffer is empty and "feed_eof()" was
+      called.
+
+
+StreamWriter
+============
+
+class class asyncio.StreamWriter(transport, protocol, reader, loop)
+
+   Wraps a Transport.
+
+   This exposes "write()", "writelines()", "can_write_eof()",
+   "write_eof()", "get_extra_info()" and "close()".  It adds "drain()"
+   which returns an optional "Future" on which you can wait for flow
+   control.  It also adds a transport attribute which references the
+   "Transport" directly.
+
+   transport
+
+      Transport.
+
+   can_write_eof()
+
+      Return "True" if the transport supports "write_eof()", "False"
+      if not. See "WriteTransport.can_write_eof()".
+
+   close()
+
+      Close the transport: see "BaseTransport.close()".
+
+   drain()
+
+      Wait until the write buffer of the underlying transport is
+      flushed.
+
+      This method has an unusual return value. The intended use is to
+      write:
+
+         w.write(data)
+         yield from w.drain()
+
+      When there's nothing to wait for, "drain()" returns "()", and
+      the yield-from continues immediately.  When the transport buffer
+      is full (the protocol is paused), "drain()" creates and returns
+      a "Future" and the yield-from will block until that Future is
+      completed, which will happen when the buffer is (partially)
+      drained and the protocol is resumed.
+
+   get_extra_info(name, default=None)
+
+      Return optional transport information: see
+      "BaseTransport.get_extra_info()".
+
+   write(data)
+
+      Write some *data* bytes to the transport: see
+      "WriteTransport.write()".
+
+   writelines(data)
+
+      Write a list (or any iterable) of data bytes to the transport:
+      see "WriteTransport.writelines()".
+
+   write_eof()
+
+      Close the write end of the transport after flushing buffered
+      data: see "WriteTransport.write_eof()".
+
+
+StreamReaderProtocol
+====================
+
+class class asyncio.StreamReaderProtocol(stream_reader, client_connected_cb=None, loop=None)
+
+   Trivial helper class to adapt between "Protocol" and
+   "StreamReader". Sublclass of "Protocol".
+
+   *stream_reader* is a "StreamReader" instance, *client_connected_cb*
+   is an optional function called with (stream_reader, stream_writer)
+   when a connection is made, *loop* is the event loop instance to
+   use.
+
+   (This is a helper class instead of making "StreamReader" itself a
+   "Protocol" subclass, because the "StreamReader" has other potential
+   uses, and to prevent the user of the "StreamReader" to accidentally
+   call inappropriate methods of the protocol.)
+
+
+IncompleteReadError
+===================
+
+exception exception asyncio.IncompleteReadError
+
+      Incomplete read error, subclass of "EOFError".
+
+   expected
+
+      Total number of expected bytes ("int").
+
+   partial
+
+      Read bytes string before the end of stream was reached
+      ("bytes").
+
+
+Example
+=======
+
+Simple example querying HTTP headers of the URL passed on the command
+line:
+
+   import asyncio
+   import urllib.parse
+   import sys
+
+   @asyncio.coroutine
+   def print_http_headers(url):
+       url = urllib.parse.urlsplit(url)
+       reader, writer = yield from asyncio.open_connection(url.hostname, 80)
+       query = ('HEAD {url.path} HTTP/1.0\r\n'
+                'Host: {url.hostname}\r\n'
+                '\r\n').format(url=url)
+       writer.write(query.encode('latin-1'))
+       while True:
+           line = yield from reader.readline()
+           if not line:
+               break
+           line = line.decode('latin1').rstrip()
+           if line:
+               print('HTTP header> %s' % line)
+
+   url = sys.argv[1]
+   loop = asyncio.get_event_loop()
+   task = asyncio.async(print_http_headers(url))
+   loop.run_until_complete(task)
+   loop.close()
+
+Usage:
+
+   python example.py http://example.com/path/page.html

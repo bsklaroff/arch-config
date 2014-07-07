@@ -18,8 +18,25 @@ rm dotfiles/xmonad/xmonad
 rm dotfiles/vim/vim
 
 echo 'Linking etc...'
+# Make directories as needed
+for d in $(find etc -type d)
+do
+  sudo mkdir -p "/$d"
+done
 # Soft link etc files into /etc directory
 for f in $(find etc -type f)
+do
+  sudo ln -sf "$(pwd)/$f" "/$f"
+done
+
+echo 'Linking usr...'
+# Make directories as needed
+for d in $(find usr -type d)
+do
+  sudo mkdir -p "/$d"
+done
+# Soft link usr files into /usr directory
+for f in $(find usr -type f)
 do
   sudo ln -sf "$(pwd)/$f" "/$f"
 done

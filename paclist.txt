@@ -40,6 +40,7 @@ pcmciautils
 pkg-config
 polkit
 procps-ng
+python
 reiserfsprogs
 s-nail
 sudo
@@ -49,6 +50,7 @@ unzip
 usbutils
 vi
 vim
+vlc
 wget
 which
 wpa_actiond
@@ -66,3 +68,4 @@ xorg-xinit
 xsel
 xterm
 xvkbd
+zip
