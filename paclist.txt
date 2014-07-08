@@ -32,6 +32,7 @@ man-pages
 mdadm
 nano
 netctl
+nodejs
 ntp
 openssh
 pacman
@@ -46,6 +47,7 @@ s-nail
 sudo
 syslinux
 systemd-sysvcompat
+ttf-dejavu
 unzip
 usbutils
 vi
