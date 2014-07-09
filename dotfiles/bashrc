@@ -12,9 +12,8 @@ alias ls='ls --color=auto'
 alias vi='vim'
 alias sour="source $HOME/.bashrc"
 alias archwiki="cd /usr/share/doc/arch-wiki/html"
-alias pyref="cd /usr/local/share/doc/python-3.4.1-docs-text"
+alias pyref="firefox /usr/local/share/doc/python-3.4.1-docs-html/index.html"
 alias wf="sudo wifi-find"
-alias wfl="sudo iw dev wlp1s0 scan | grep SSID"
 alias wfr="sudo systemctl restart netctl-auto@wlp1s0"
 alias pacsave="pacman -Qetn | cut -d' ' -f1 > $HOME/.arch_config/paclist.txt"
 function pac {
