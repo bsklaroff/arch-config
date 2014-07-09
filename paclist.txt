@@ -15,7 +15,10 @@ firefox
 flashplugin
 flex
 gettext
+gimp
 git
+gphoto2
+gpicview
 gptfdisk
 iputils
 iw
