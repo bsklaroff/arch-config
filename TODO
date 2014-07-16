@@ -1,7 +1,7 @@
 fix suspend
-fix youtube fullscreen
-improve status bar
+get battery status, CPU, mem, network status, workspaces on status bar
 add file backups
-improve fonts
-get system monitoring (conky)
 save firefox config and addons
+figure out how to deal with AUR packages
+zip docs for git storage
+make script to add docs

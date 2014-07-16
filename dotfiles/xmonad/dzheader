@@ -6,6 +6,6 @@ FONT='-*-terminus-*-r-normal-*-*-120-*-*-*-*-iso8859-*'
 
 while true ; do
     dt=`date +"%a %b %d %l:%M %p "`
-    printf "%s\n" "$dt"
-    sleep 20
+    printf "%s | %s\n" "$dt" "$(acpi -b)"
+    sleep 5
 done | dzen2 -e ''
