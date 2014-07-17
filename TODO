@@ -1,5 +1,5 @@
 fix suspend
-get battery status, CPU, mem, network status, workspaces on status bar
+get CPU, mem, network status, workspaces on status bar
 add file backups
 save firefox config and addons
 figure out how to deal with AUR packages

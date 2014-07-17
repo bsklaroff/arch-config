@@ -7,6 +7,6 @@ xrdb ~/.Xresources
 # Map search key to escape
 xmodmap ~/.Xmodmap
 # Disable touchpad taps while typing
-syndaemon -t -k -i 1 &
+syndaemon -t -k -i 2 &
 # Start xmonad
 exec xmonad
