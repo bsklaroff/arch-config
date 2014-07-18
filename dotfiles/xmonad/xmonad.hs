@@ -7,9 +7,9 @@ import XMonad.Layout.NoBorders(Ambiguity(OnlyFloat),smartBorders)
 import XMonad.Util.EZConfig(additionalKeys)
 import XMonad.Util.Run(spawnPipe)
 
-myWorkspaceBar = "dzen2 -e '' -w '680' -ta 'l'"
+myWorkspaceBar = "dzen2 -e '' -w '680' -h '20' -ta 'l'"
 myStatusBar = "conky -c $HOME/.xmonad/conkyrc | " ++
-              "dzen2 -e '' -x '680' -w '686' -ta 'r'"
+              "dzen2 -e '' -x '680' -w '686' -h '20' -ta 'r'"
 main = do
     workspaceBar <- spawnPipe myWorkspaceBar
     statusBar <- spawnPipe myStatusBar
