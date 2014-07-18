@@ -22,6 +22,6 @@ function bat {
 
 while true ; do
     dt=`date +"%a %b %d %l:%M %p "`
-    printf "%s | %s\n" "$dt" "$(bat)"
+    printf "| %s | %s\n" "$(bat)" "$dt"
     sleep 2
-done | dzen2 -e ''
+done | dzen2 -e '' -x '900' -w '466' -ta 'r'
