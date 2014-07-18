@@ -1,0 +1,12 @@
+background yes
+out_to_console yes
+out_to_x no
+update_interval 2
+total_run_times 0
+
+TEXT
+^fg(\#909090)| CPU ${cpu cpu1}% ${cpu cpu2}%^fg() \
+^fg(\#909090)| Mem ${memperc}%^fg() \
+^fg(\#909090)| WiFi ${downspeedf wlp1s0}/${upspeedf wlp1s0}KiB^fg() \
+^fg(\#909090)| ${execi 2 $HOME/.xmonad/battery.sh} ^fg()\
+^fg(\#909090)| ${time %a %b %d %H:%M }^fg()
