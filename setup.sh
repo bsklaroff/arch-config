@@ -59,7 +59,25 @@ sudo systemctl restart ntpd
 
 echo 'Done!'
 
+# For hibernation (only needed once):
+# Make swapfile
+## sudo fallocate -l 512M /swapfile
+## sudo chmod 600 /swapfile
+## sudo mkswap /swapfile
+## sudo swapon /swapfile
+# Add the line '/swapfile none swap defaults 0 0' to /etc/fstab
+# Find <Root UUID> in /etc/fstab
+# Run 'sudo filefrag -v /swapfile' and look at first row of physical_offset
+# column to find <Swap File Offset>
+# Then add kernel parameters to the APPEND line of /boot/syslinux/syslinux.cfg:
+# resume=/dev/disk/by-uuid/<Root UUID> resume_offset=<Swap File Offset>
+# Finally, make sure resume hook is in /etc/mkinitcpéo.conf after block and
+# before filesystems
+
 # Patch touchpad kernel modules (only needed once)
-# wget http://pastie.org/pastes/9074242/download -O cros-haswell-modules-archlinux.sh
-# chmod +x cros-haswell-modules-archlinux.sh
-# ./cros-haswell-modules-archlinux.sh
+## wget http://pastie.org/pastes/9074242/download -O cros-haswell-modules-archlinux.sh
+## chmod +x cros-haswell-modules-archlinux.sh
+## ./cros-haswell-modules-archlinux.sh
+
+# Rebuild mkinitcpio (anytime /etc/mkinitcpio.conf is changed)
+## mkinitcpio -p linux

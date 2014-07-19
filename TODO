@@ -1,6 +1,10 @@
 fix suspend
+control power button with acpid
+get music working with mpd
 add file backups
 save firefox config and addons
 figure out how to deal with AUR packages
 zip docs for git storage
 make script to add docs
+add saved config var file
+add option in setup for other hardware
