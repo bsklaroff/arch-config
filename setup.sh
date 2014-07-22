@@ -71,13 +71,8 @@ echo 'Done!'
 # column to find <Swap File Offset>
 # Then add kernel parameters to the APPEND line of /boot/syslinux/syslinux.cfg:
 # resume=/dev/disk/by-uuid/<Root UUID> resume_offset=<Swap File Offset>
-# Finally, make sure resume hook is in /etc/mkinitcpéo.conf after block and
+# Finally, make sure resume hook is in /etc/mkinitcpio.conf after block and
 # before filesystems
-
-# Patch touchpad kernel modules (only needed once)
-## wget http://pastie.org/pastes/9074242/download -O cros-haswell-modules-archlinux.sh
-## chmod +x cros-haswell-modules-archlinux.sh
-## ./cros-haswell-modules-archlinux.sh
 
 # Rebuild mkinitcpio (anytime /etc/mkinitcpio.conf is changed)
 ## mkinitcpio -p linux

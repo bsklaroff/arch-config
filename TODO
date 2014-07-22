@@ -1,5 +1,4 @@
-fix suspend
-control power button with acpid
+boost internal mic volume
 get music working with mpd
 add file backups
 save firefox config and addons
