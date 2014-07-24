@@ -9,6 +9,7 @@ call vundle#begin()
 Bundle 'gmarik/Vundle.vim'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'scrooloose/nerdtree'
+Bundle 'kchmck/vim-coffee-script'
 
 call vundle#end()
 
