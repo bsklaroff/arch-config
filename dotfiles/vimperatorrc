@@ -1,0 +1,17 @@
+"3.8.2 (created: 2014/02/13 23:52:43)
+
+source! /home/ben/.vimperatorrc.local
+
+" vim: set ft=vimperator:
+
+map <silent> <C-F8> :js toggle_bottombar()<CR>
+
+:js << EOF
+function toggle_bottombar() {
+    var bb = document.getElementById('liberator-bottombar');
+    if (!bb)
+        return;
+    bb.style.height = (bb.style.height == '') ? '0px' : '';
+    bb.style.overflow = (bb.style.height == '') ? '' : 'hidden';
+    }
+EOF

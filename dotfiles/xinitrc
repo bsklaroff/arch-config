@@ -1,14 +1,8 @@
-# Set cursor to arrow instead of cross
-xsetroot -cursor_name left_ptr
-# Start pulseaudio
-/usr/bin/start-pulseaudio-x11
-# Fix top row keys
-xbindkeys
-# Change terminal colors
-xrdb ~/.Xresources
-# Map search key to escape
-xmodmap ~/.Xmodmap
-# Disable touchpad taps while typing
-syndaemon -t -k -i 2 &
-# Start xmonad
-exec xmonad
+xsetroot -cursor_name left_ptr # set cursor to arrow instead of cross
+/usr/bin/start-pulseaudio-x11 # start pulseaudio
+xbindkeys # fix top row keys
+xrdb ~/.Xresources # change terminal colors
+xmodmap ~/.Xmodmap # map search key to escape
+syndaemon -t -k -i 2 & # disable touchpad taps while typing
+unclutter -grab & # make mouse disappear when idle
+exec xmonad # start xmonad

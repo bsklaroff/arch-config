@@ -6,6 +6,7 @@ autoconf
 automake
 bc
 bison
+blender
 conky
 cryptsetup
 dhclient
@@ -37,6 +38,8 @@ make
 man-db
 man-pages
 mdadm
+mpc
+mpd
 nano
 netctl
 nodejs
@@ -48,7 +51,6 @@ pcmciautils
 pkg-config
 procps-ng
 pulseaudio-alsa
-python
 reiserfsprogs
 s-nail
 skype
@@ -56,6 +58,7 @@ sudo
 syslinux
 systemd-sysvcompat
 ttf-dejavu
+unclutter
 unzip
 usbutils
 vi

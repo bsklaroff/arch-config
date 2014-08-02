@@ -56,6 +56,9 @@ sudo systemctl restart netctl-auto@wlp1s0
 # Sync date and time over the Internet
 sudo systemctl enable ntpd
 sudo systemctl restart ntpd
+# Start music player daemon
+sudo systemctl enable mpd
+sudo systemctl restart mpd
 
 echo 'Done!'
 
@@ -76,3 +79,8 @@ echo 'Done!'
 
 # Rebuild mkinitcpio (anytime /etc/mkinitcpio.conf is changed)
 ## mkinitcpio -p linux
+
+# For mpd (only needed once):
+## sudo touch {/run/mpd/mpd.pid,/var/log/mpd/mpd.log,/var/lib/mpd/{mpd.pid,mpdstate}}
+## sudo chown mpd {/run/mpd/mpd.pid,/var/log/mpd/mpd.log,/var/lib/mpd/{mpd.pid,mpdstate}}
+## sudo chgrp mpd {/run/mpd/mpd.pid,/var/log/mpd/mpd.log,/var/lib/mpd/{mpd.pid,mpdstate}}
