@@ -20,7 +20,7 @@ main = do
       }
       `additionalKeysP`
       [ ("M-b", sendMessage ToggleStruts)
-      , ("M-S-p", spawn "xterm -e \"cd $(cat ~/.svdir) && vim $(cat ~/.svfile) && /bin/bash\"")
+      , ("M-S-k", spawn "xterm -e \"cd $(cat ~/.svdir) && vim $(cat ~/.svfile) && /bin/bash\"")
       ]
 
 myLogHook h = dynamicLogWithPP $ defaultPP
