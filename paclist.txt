@@ -7,6 +7,7 @@ automake
 bc
 bison
 blender
+chromium
 conky
 cryptsetup
 dhclient
@@ -38,6 +39,7 @@ make
 man-db
 man-pages
 mdadm
+mono
 mpc
 mpd
 nano
@@ -49,15 +51,16 @@ pacman
 patch
 pcmciautils
 pkg-config
+postgresql
 procps-ng
 pulseaudio-alsa
+redis
 reiserfsprogs
 s-nail
 skype
 sudo
 syslinux
 systemd-sysvcompat
-ttf-dejavu
 unclutter
 unzip
 usbutils

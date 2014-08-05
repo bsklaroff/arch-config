@@ -4,7 +4,7 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers(doFullFloat,isFullscreen)
 import XMonad.Layout.NoBorders(Ambiguity(OnlyFloat),smartBorders)
-import XMonad.Util.EZConfig(additionalKeys)
+import XMonad.Util.EZConfig(additionalKeysP)
 import XMonad.Util.Run(spawnPipe)
 
 myWorkspaceBar = "dzen2 -e '' -w '680' -h '20' -ta 'l'"
@@ -18,8 +18,10 @@ main = do
       , layoutHook  = smartBorders $ avoidStruts $ layoutHook defaultConfig
       , manageHook = isFullscreen --> doFullFloat
       }
-      `additionalKeys`
-      [ ((mod1Mask, xK_b), sendMessage ToggleStruts) ]
+      `additionalKeysP`
+      [ ("M-b", sendMessage ToggleStruts)
+      , ("M-S-p", spawn "xterm -e \"cd $(cat ~/.svdir) && vim $(cat ~/.svfile) && /bin/bash\"")
+      ]
 
 myLogHook h = dynamicLogWithPP $ defaultPP
     { ppCurrent         = dzenColor "#303030" "#909090" . pad

@@ -44,7 +44,7 @@ done
 # Generate locale in /etc/locale.gen
 sudo locale-gen
 # Set localtime
-sudo ln -sf /usr/share/zoneinfo/US/Pacific /etc/localtime
+sudo ln -sf /usr/share/zoneinfo/US/Eastern /etc/localtime
 # Set the hardware clock to UTC
 sudo hwclock --systohc --utc
 
