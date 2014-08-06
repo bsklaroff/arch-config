@@ -24,6 +24,8 @@ set softtabstop=2
 set shiftwidth=2
 set expandtab
 set shiftround
+" Set python tabs specifically
+autocmd FileType python set tabstop=2|set shiftwidth=2|set softtabstop=2
 
 " Enable syntax highlighting
 syntax on
