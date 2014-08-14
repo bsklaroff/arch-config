@@ -6,6 +6,9 @@ shopt -s expand_aliases # get aliases working in vim
 alias ls='ls --color=auto'
 alias vi='vim'
 alias sour='source $HOME/.bashrc'
+# monitor configuration
+alias hdmi='xrandr --output eDP1 --off --output HDMI1 --auto'
+alias edp1='xrandr --output HDMI1 --off --output eDP1 --auto'
 # save and jump to directory and file locations
 alias sv='pwd > ~/.svdir && [ -f ~/.svfile ] && rm ~/.svfile'
 alias jp='[ -f ~/.svdir ] && cd $(cat ~/.svdir)'
@@ -31,4 +34,6 @@ alias defkeys='cp ~/.ssh/backup_keys/* ~/.ssh/'
 # markforged specific
 alias cs='cd ~/programs/markforged/CarbonSlicer'
 alias cr='coffee targets/development/carbonslicer.coffee'
+alias ei='cd ~/programs/markforged/Eiger'
+alias ma='cd ~/programs/markforged/Matterhorn'
 alias gc='grunt compile'

@@ -2,6 +2,7 @@ xsetroot -cursor_name left_ptr # set cursor to arrow instead of cross
 /usr/bin/start-pulseaudio-x11 # start pulseaudio
 xbindkeys # fix top row keys
 xrdb ~/.Xresources # change terminal colors
+setxkbmap -option caps:escape & # map caps lock to escape
 xmodmap ~/.Xmodmap # map search key to escape
 syndaemon -t -k -i 2 & # disable touchpad taps while typing
 unclutter -grab & # make mouse disappear when idle

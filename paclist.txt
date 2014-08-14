@@ -20,6 +20,7 @@ file
 firefox
 flashplugin
 flex
+gconf
 gettext
 gimp
 git
@@ -29,6 +30,7 @@ gptfdisk
 iputils
 iw
 jfsutils
+jre7-openjdk
 libtool
 licenses
 linux
@@ -45,6 +47,7 @@ mpd
 nano
 netctl
 nodejs
+ntfs-3g
 ntp
 openssh
 pacman

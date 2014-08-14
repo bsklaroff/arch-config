@@ -8,5 +8,6 @@
 PS1='[\u@\h \W]\$ '
 
 source $HOME/.bash_aliases
+source $HOME/programs/markforged/creds
 
 [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
