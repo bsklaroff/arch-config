@@ -61,6 +61,7 @@ redis
 reiserfsprogs
 s-nail
 skype
+strace
 sudo
 syslinux
 systemd-sysvcompat
