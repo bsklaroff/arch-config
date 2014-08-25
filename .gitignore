@@ -1,4 +1,5 @@
 common/dotfiles/vim/bundle
+common/dotfiles/vim/.netrwhist
 common/dotfiles/xmonad/xmonad.errors
 common/dotfiles/xmonad/xmonad.hi
 common/dotfiles/xmonad/xmonad.o

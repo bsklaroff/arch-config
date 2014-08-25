@@ -24,17 +24,17 @@ function link_files () {
   # Make directories as needed
   for d in $(find $base_dir/root -type d)
   do
-    sudo mkdir -p "/$d"
+    sudo mkdir -p "/${d:$prefix_len}$"
   done
   # Soft link common files into / directory
   for f in $(find $base_dir/root -type f)
   do
-    sudo ln -sf "$(pwd)/$f" "/$f"
+    sudo ln -sf "$(pwd)/$f" "/${f:$prefix_len}"
   done
 }
 
 link_files 'common'
-#link_files 'acer-c720'
+link_files 'acer-c720'
 
 # Generate locale in /etc/locale.gen
 sudo locale-gen

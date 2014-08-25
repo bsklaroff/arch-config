@@ -7,3 +7,4 @@ zip docs for git storage
 make script to add docs
 add saved config var file
 add option in setup for other hardware
+automatically install vim plugins
