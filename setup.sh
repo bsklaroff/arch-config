@@ -6,40 +6,35 @@ then
   sudo pacman -Syu --needed $(< paclist.txt)
 fi
 
-echo 'Linking dotfiles...'
-# Soft link dotfiles into home directory
-for f in dotfiles/*
-do
-  ln -sf "$(pwd)/$f" "$HOME/.$(basename $f)"
-done
+function link_files () {
+  base_dir=$1
+  prefix_len=$((${#base_dir}+6))
+  echo "Linking $base_dir dotfiles..."
+  # Soft link common dotfiles into home directory
+  for f in $base_dir/dotfiles/*
+  do
+    ln -sf "$(pwd)/$f" "$HOME/.$(basename $f)"
+  done
 
-# Remove annoying recursive soft links
-rm dotfiles/xmonad/xmonad
-rm dotfiles/vim/vim
+  # Remove annoying recursive soft links
+  rm $base_dir/dotfiles/xmonad/xmonad
+  rm $base_dir/dotfiles/vim/vim
 
-echo 'Linking etc...'
-# Make directories as needed
-for d in $(find etc -type d)
-do
-  sudo mkdir -p "/$d"
-done
-# Soft link etc files into /etc directory
-for f in $(find etc -type f)
-do
-  sudo ln -sf "$(pwd)/$f" "/$f"
-done
+  echo "Linking $base_dir rootfiles..."
+  # Make directories as needed
+  for d in $(find $base_dir/root -type d)
+  do
+    sudo mkdir -p "/$d"
+  done
+  # Soft link common files into / directory
+  for f in $(find $base_dir/root -type f)
+  do
+    sudo ln -sf "$(pwd)/$f" "/$f"
+  done
+}
 
-echo 'Linking usr...'
-# Make directories as needed
-for d in $(find usr -type d)
-do
-  sudo mkdir -p "/$d"
-done
-# Soft link usr files into /usr directory
-for f in $(find usr -type f)
-do
-  sudo ln -sf "$(pwd)/$f" "/$f"
-done
+link_files 'common'
+#link_files 'acer-c720'
 
 # Generate locale in /etc/locale.gen
 sudo locale-gen

@@ -1,0 +1,6 @@
+xsetroot -cursor_name left_ptr # set cursor to arrow instead of cross
+/usr/bin/start-pulseaudio-x11 # start pulseaudio
+xrdb ~/.Xresources # change terminal colors
+syndaemon -t -k -i 2 & # disable touchpad taps while typing
+unclutter -grab & # make mouse disappear when idle
+exec xmonad # start xmonad

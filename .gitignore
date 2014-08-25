@@ -1,5 +1,5 @@
-dotfiles/vim/bundle
-dotfiles/xmonad/xmonad.errors
-dotfiles/xmonad/xmonad.hi
-dotfiles/xmonad/xmonad.o
-dotfiles/xmonad/xmonad-i386-linux
+common/dotfiles/vim/bundle
+common/dotfiles/xmonad/xmonad.errors
+common/dotfiles/xmonad/xmonad.hi
+common/dotfiles/xmonad/xmonad.o
+common/dotfiles/xmonad/xmonad-i386-linux
