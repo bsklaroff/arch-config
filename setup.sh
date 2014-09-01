@@ -1,8 +1,7 @@
 #!/bin/bash
 
 # Install and update packages if specified
-if [[ "$1" == "-p" ]]
-then
+if [[ "$1" == "-p" ]]; then
   sudo pacman -Syu --needed $(< paclist.txt)
 fi
 
@@ -17,8 +16,8 @@ function link_files () {
   done
 
   # Remove annoying recursive soft links
-  rm $base_dir/dotfiles/xmonad/xmonad
-  rm $base_dir/dotfiles/vim/vim
+  [[ -L $base_dir/dotfiles/xmonad/xmonad ]] && rm $base_dir/dotfiles/xmonad/xmonad
+  [[ -L $base_dir/dotfiles/vim/vim ]] && rm $base_dir/dotfiles/vim/vim
 
   echo "Linking $base_dir rootfiles..."
   # Make directories as needed
@@ -34,7 +33,11 @@ function link_files () {
 }
 
 link_files 'common'
-link_files 'acer-c720'
+if [[ "$(hostname)" == "sawtooth" ]]; then
+  link_files 'acer-c720'
+elif [[ "$(hostname)" == "izaakwalton" ]]; then
+  link_files 'thinkpad-t440s'
+fi
 
 # Generate locale in /etc/locale.gen
 sudo locale-gen
@@ -46,14 +49,17 @@ sudo hwclock --systohc --utc
 echo 'Starting systemd services...'
 ### Systemd services
 # Automatically connect to WiFi
-sudo systemctl enable netctl-auto@wlp1s0
-sudo systemctl restart netctl-auto@wlp1s0
+sudo systemctl enable netctl-auto@$WIFI
+sudo systemctl restart netctl-auto@$WIFI
 # Sync date and time over the Internet
 sudo systemctl enable ntpd
 sudo systemctl restart ntpd
 # Start music player daemon
 sudo systemctl enable mpd
 sudo systemctl restart mpd
+# Start postgresql
+sudo systemctl enable postgresql
+sudo systemctl restart postgresql
 
 echo 'Done!'
 
@@ -76,6 +82,10 @@ echo 'Done!'
 ## mkinitcpio -p linux
 
 # For mpd (only needed once):
+## sudo mkdir -p $HOME/music /var/log/mpd /run/mpd
 ## sudo touch {/run/mpd/mpd.pid,/var/log/mpd/mpd.log,/var/lib/mpd/{mpd.pid,mpdstate}}
 ## sudo chown mpd {/run/mpd/mpd.pid,/var/log/mpd/mpd.log,/var/lib/mpd/{mpd.pid,mpdstate}}
 ## sudo chgrp mpd {/run/mpd/mpd.pid,/var/log/mpd/mpd.log,/var/lib/mpd/{mpd.pid,mpdstate}}
+
+# For virtualbox
+## sudo gpasswd -a $USER vboxusers

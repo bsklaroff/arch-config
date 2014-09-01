@@ -1,0 +1,24 @@
+# Mute
+"amixer set Master toggle"
+    m:0x0 + c:121
+    XF86AudioMute
+
+# Decrease Volume
+"amixer set Master 3275- unmute"
+    m:0x0 + c:122
+    XF86AudioLowerVolume
+
+# Increase Volume
+"amixer set Master 3275+ unmute"
+    m:0x0 + c:123
+    XF86AudioRaiseVolume
+
+# Backlight Down
+"xbacklight -dec 5"
+    m:0x0 + c:72
+    F5
+
+# Backlight Up
+"xbacklight -inc 5"
+    m:0x0 + c:73
+    F6

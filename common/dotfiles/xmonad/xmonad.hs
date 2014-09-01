@@ -17,9 +17,11 @@ main = do
       { logHook = myLogHook workspaceBar
       , layoutHook  = smartBorders $ avoidStruts $ layoutHook defaultConfig
       , manageHook = isFullscreen --> doFullFloat
+      , modMask = mod4Mask
       }
       `additionalKeysP`
       [ ("M-b", sendMessage ToggleStruts)
+      , ("M-z", spawn "xscreensaver-command --lock")
       , ("M-S-l", spawn "xterm -e \"cd $(cat ~/.svdir) && vim $(cat ~/.svfile) && /bin/bash\"")
       ]
 

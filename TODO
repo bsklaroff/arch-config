@@ -1,10 +1,15 @@
+thinkpad get top row keys working
+thinkpad get displayport working
+thinkpad get fan working
+thinkpad fix mpd
+switch dzen to xmobar
 boost internal mic volume
 get skype sound working
 add file backups
 save firefox config and addons
-figure out how to deal with AUR packages
+replace AUR packages with package manager
 zip docs for git storage
 make script to add docs
-add saved config var file
-add option in setup for other hardware
 automatically install vim plugins
+automatically install npm packages
+add saved config var file

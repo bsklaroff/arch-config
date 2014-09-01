@@ -1,0 +1,11 @@
+export WIFI="$(iw dev | grep Interface | cut -d' ' -f2)" # find wifi name
+xsetroot -cursor_name left_ptr # set cursor to arrow instead of cross
+/usr/bin/start-pulseaudio-x11 # start pulseaudio
+xbindkeys # fix top row keys
+xrdb ~/.Xresources # change terminal colors
+xscreensaver -no-splash & # enable screensaver
+xss-lock -- xscreensaver-command -lock & # screen locked on resume
+setxkbmap -option caps:escape # map caps lock to escape
+syndaemon -t -k -i 2 & # disable touchpad taps while typing
+unclutter -grab & # make mouse disappear when idle
+exec xmonad # start xmonad
