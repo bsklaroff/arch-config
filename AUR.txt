@@ -1,0 +1,2 @@
+heroku-client-standalone
+linux-chromebook

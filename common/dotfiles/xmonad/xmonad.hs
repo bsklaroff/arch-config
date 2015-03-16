@@ -17,7 +17,6 @@ main = do
       { logHook = myLogHook workspaceBar
       , layoutHook  = smartBorders $ avoidStruts $ layoutHook defaultConfig
       , manageHook = isFullscreen --> doFullFloat
-      , modMask = mod4Mask
       }
       `additionalKeysP`
       [ ("M-b", sendMessage ToggleStruts)

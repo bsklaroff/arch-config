@@ -25,6 +25,7 @@ gconf
 gettext
 gimp
 git
+gobject-introspection
 gphoto2
 gpicview
 gptfdisk
@@ -33,7 +34,6 @@ intel-ucode
 iputils
 iw
 jfsutils
-jre7-openjdk
 libtool
 libva-intel-driver
 licenses
@@ -44,6 +44,7 @@ make
 man-db
 man-pages
 mdadm
+mixxx
 mono
 mpc
 mpd
@@ -57,6 +58,7 @@ openssh
 p7zip
 pacman
 patch
+pavucontrol
 pcmciautils
 perl-io-string
 perl-timedate
@@ -67,7 +69,9 @@ pulseaudio-alsa
 python-docutils
 redis
 reiserfsprogs
+rtorrent
 s-nail
+scrot
 skype
 socat
 strace

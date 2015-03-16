@@ -2,6 +2,7 @@ thinkpad get top row keys working
 thinkpad get displayport working
 thinkpad get fan working
 thinkpad fix mpd
+acer fix dmenu
 switch dzen to xmobar
 boost internal mic volume
 get skype sound working

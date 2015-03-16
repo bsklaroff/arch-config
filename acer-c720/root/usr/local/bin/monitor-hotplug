@@ -1,9 +1,9 @@
 #!/bin/bash
 
 IN="eDP1"
-EXT="DP1"
+EXT="HDMI1"
 
-if (xrandr | grep "$EXT connected"); then
+if [[ -n "$(xrandr | grep "$EXT connected")" ]]; then
     xrandr --output $IN --off --output $EXT --auto
 else
     xrandr --output $EXT --off --output $IN --auto

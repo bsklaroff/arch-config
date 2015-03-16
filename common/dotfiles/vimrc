@@ -80,6 +80,11 @@ au BufWrite * :call DeleteTrailingWS()
 :nnoremap <leader>vv :r !xsel -b<cr>
 " Save current directory and file so I can jump to them
 :noremap <C-k> :redi! > $HOME/.svdir<cr>:echon expand('%:p:h')<cr>:redi END<cr>:redi! > $HOME/.svfile<cr>:echon expand('%:t')<cr>:redi END<cr>:!sed -i -e "1d" $HOME/.svdir $HOME/.svfile<cr>
+" Tab movement
+nnoremap <C-Left> :tabprevious<CR>
+nnoremap <C-Right> :tabnext<CR>
+nnoremap <silent> <A-Left> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
+nnoremap <silent> <A-Right> :execute 'silent! tabmove ' . tabpagenr()<CR>
 
 " Highlight current line and column as well as the 80th column
 set cursorline

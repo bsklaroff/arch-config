@@ -1,3 +1,4 @@
+export WIFI="$(iw dev | grep Interface | cut -d' ' -f2)"
 xsetroot -cursor_name left_ptr # set cursor to arrow instead of cross
 /usr/bin/start-pulseaudio-x11 # start pulseaudio
 xbindkeys # fix top row keys
