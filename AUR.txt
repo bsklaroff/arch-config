@@ -1,2 +1,16 @@
 heroku-client-standalone
 linux-chromebook
+python-protobuf
+arduino
+cura
+android-sdk
+repetier-host
+android-sdk-platform-tools
+libtinfo
+android-sdk-build-tools
+android-platform-22
+android-armv7a-eabi-system-image-22
+google-chrome
+v8
+ncurses5-compat-libs
+libtinfo-5

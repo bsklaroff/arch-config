@@ -8,13 +8,13 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-Bundle 'gmarik/Vundle.vim'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'scrooloose/nerdtree'
-Bundle 'kien/ctrlp.vim'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'digitaltoad/vim-jade'
-Bundle 'groenewege/vim-less'
+Plugin 'gmarik/Vundle.vim'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'scrooloose/nerdtree'
+Plugin 'kien/ctrlp.vim'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'digitaltoad/vim-jade'
+Plugin 'groenewege/vim-less'
 
 call vundle#end()
 
@@ -64,6 +64,9 @@ func! DeleteTrailingWS()
   exe "normal `z"
 endfunc
 au BufWrite * :call DeleteTrailingWS()
+
+" Treat csjx files as coffeescript
+au BufNewFile,BufRead *.cjsx set filetype=coffee
 
 " Set leader and localleader
 :let mapleader = ","
