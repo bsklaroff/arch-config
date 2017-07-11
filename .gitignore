@@ -5,3 +5,4 @@ common/dotfiles/xmonad/xmonad.hi
 common/dotfiles/xmonad/xmonad.o
 common/dotfiles/xmonad/xmonad-i386-linux
 common/dotfiles/xmonad/xmonad-x86_64-linux
+common/dotfiles/bash_aliases
