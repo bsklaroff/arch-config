@@ -13,5 +13,9 @@ else
   then
     charging="AC"
   fi
-  printf "%s %s (%s)" "$charging" "$percent" "$timestr"
+  if [[ -n $(echo $timestr | grep Unknown) ]]; then
+    printf "%s %s" "$charging" "$percent"
+  else
+    printf "%s %s (%s)" "$charging" "$percent" "$timestr"
+  fi
 fi

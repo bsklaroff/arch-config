@@ -1,5 +1,11 @@
 [user]
-	email = bsklaroff@gmail.com
+	email = ben@markforged.com
 	name = Ben Sklaroff
 [push]
 	default = simple
+[branch]
+	autosetuprebase = always
+[pull]
+	rebase = true
+[commit]
+	template = /home/ben/programs/MarkForged/Toolbox/git-commit-template.txt

@@ -57,9 +57,15 @@ sudo systemctl restart ntpd
 # Start music player daemon
 sudo systemctl enable mpd
 sudo systemctl restart mpd
+# Start mongodb
+sudo systemctl enable mongodb
+sudo systemctl restart mongodb
 # Start postgresql
 sudo systemctl enable postgresql
 sudo systemctl restart postgresql
+# Start cups (for printer browsing)
+sudo systemctl enable cups
+sudo systemctl restart cups
 
 echo 'Done!'
 

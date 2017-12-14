@@ -1,14 +1,17 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 import locale
 import os
 import subprocess as sp
 import sys
 
+
 # For converting bytestrings to strings
 encoding = locale.getdefaultlocale()[1]
 
 wifi = os.environ['WIFI']
+sp.call(['sudo systemctl stop system-netctl.slice'], shell=True)
+sp.call(['sudo ip link set ' + wifi + ' up'], shell=True)
 print('Scanning for wireless networks...')
 proc = sp.Popen(['sudo iw dev ' + wifi + ' scan'], stdout=sp.PIPE, stderr=sp.PIPE, shell=True)
 try:

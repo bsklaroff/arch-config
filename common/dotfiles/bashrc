@@ -5,8 +5,16 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-PS1='[\u@\h \W]\$ '
-
+export PAGER=less
+export PATH="/home/ben/Downloads/programs/node-v6.9.1-linux-x64/bin:/usr/local/heroku/bin:/home/ben/.gem/ruby/2.3.0/bin:/home/ben/programs/wabt/out/gcc/Release:$PATH"
+export EDITOR=vim
+export PYTHONPATH=python2
 source $HOME/.bash_aliases
+source $HOME/programs/MarkForged/creds
+
+source $HOME/.git-prompt.sh
+export PROMPT_COMMAND='__git_ps1 "\u \W" "\\\$ "'
+export GIT_PS1_SHOWCOLORHINTS=true
 
 [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
+

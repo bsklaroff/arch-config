@@ -4,20 +4,20 @@
 
 timeout:	0:10:00
 cycle:		0:10:00
-lock:		False
+lock:		True
 lockTimeout:	0:00:00
-passwdTimeout:	0:00:30
+passwdTimeout:	0:00:10
 visualID:	default
 installColormap:    True
 verbose:	False
 timestamp:	True
-splash:		True
+splash:		False
 splashDuration:	0:00:05
 demoCommand:	xscreensaver-demo
 prefsCommand:	xscreensaver-demo -prefs
 nice:		10
 memoryLimit:	0
-fade:		True
+fade:		False
 unfade:		False
 fadeSeconds:	0:00:03
 fadeTicks:	20
@@ -32,14 +32,14 @@ dpmsOff:	4:00:00
 grabDesktopImages:  True
 grabVideoFrames:    False
 chooseRandomImages: False
-imageDirectory:	
+imageDirectory:
 
 mode:		random
 selected:	-1
 
 textMode:	file
 textLiteral:	XScreenSaver
-textFile:	
+textFile:
 textProgram:	fortune
 textURL:	http://en.wikipedia.org/w/index.php?title=Special:NewPages&feed=rss
 
@@ -261,5 +261,5 @@ initialDelay:	0:00:00
 GetViewPortIsFullOfLies:False
 procInterrupts:	True
 xinputExtensionDev: False
-overlayStderr:	True
+overlayStderr:	False
 

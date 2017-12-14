@@ -1,10 +1,13 @@
 #!/bin/bash
 
 IN="eDP1"
-EXT="DP1"
+DP="DP1"
+HDMI="HDMI1"
 
-if [[ -n "$(xrandr | grep "^$EXT connected")" ]]; then
-    xrandr --output $IN --off --output $EXT --auto
+if [[ -n "$(xrandr | grep "^$DP connected")" ]]; then
+  xrandr --output $IN --off --output $DP --auto
+elif [[ -n "$(xrandr | grep "^$HDMI connected")" ]]; then
+  xrandr --output $IN --off --output $HDMI --auto
 else
-    xrandr --output $EXT --off --output $IN --auto
+  xrandr --output $DP --off --output $HDMI --off --output $IN --auto
 fi

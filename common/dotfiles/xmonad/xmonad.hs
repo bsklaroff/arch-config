@@ -22,6 +22,9 @@ main = do
       [ ("M-b", sendMessage ToggleStruts)
       , ("M-z", spawn "xscreensaver-command --lock")
       , ("M-S-l", spawn "xterm -e \"cd $(cat ~/.svdir) && vim $(cat ~/.svfile) && /bin/bash\"")
+      , ("C-S-l", spawn "xdotool mousemove_relative 1 0 && xdotool click 1")
+      , ("C-S-m", spawn "xdotool mousemove_relative 1 0 && xdotool click 2")
+      , ("C-S-r", spawn "xdotool mousemove_relative 1 0 && xdotool click 3")
       ]
 
 myLogHook h = dynamicLogWithPP $ defaultPP
